@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XTROTIO | Premium Movies</title>
+    <title>XTROTIO | Cinema Portal</title>
     <link rel="icon" type="image/png" href="/fevicon.png">
     <style>
         /* GLOBAL STYLES */
@@ -21,7 +21,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid #e50914; /* Netflix Red */
+            border-bottom: 2px solid #e50914;
             display: flex;
             justify-content: center;
             gap: 30px;
@@ -53,67 +53,78 @@
             letter-spacing: 3px;
         }
 
-        /* GRID */
+        /* MOVIE GRID */
         .grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             padding: 40px 20px;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: auto;
         }
 
-        /* CARD */
-        .card {
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            width: 100%;
-            max-width: 320px;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* MOVIE CARD STYLING */
+        .movie-card {
+            background: #111;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s;
+            position: relative;
         }
-        .card:hover { border-color: #e50914; transform: translateY(-10px); }
+        .movie-card:hover { 
+            transform: scale(1.03); 
+            border-color: #e50914;
+            box-shadow: 0 0 25px rgba(229, 9, 20, 0.3);
+        }
 
-        .app-icon { 
-            width: 90px; height: 90px; 
-            border-radius: 20px; margin-bottom: 20px; 
-            object-fit: cover; 
+        /* MOVIE BANNER */
+        .banner {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 3px solid #e50914;
         }
-        
-        .badge {
+
+        .movie-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .movie-title {
+            font-size: 20px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .movie-meta {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* TELEGRAM BUTTON */
+        .tg-button {
+            display: block;
             background: #e50914;
             color: #fff;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 5px 12px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .dl-button {
-            display: block;
-            width: 80%;
-            margin-top: 25px;
-            padding: 15px;
-            border: 2px solid #e50914;
-            color: #e50914;
             text-decoration: none;
-            border-radius: 10px;
-            font-weight: 900;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
             transition: 0.3s;
             text-transform: uppercase;
         }
-        .dl-button:hover { background: #e50914; color: #fff; box-shadow: 0 0 20px #e50914; }
+        .tg-button:hover { 
+            background: #ff1e2b;
+            box-shadow: 0 0 15px #e50914;
+        }
 
-        footer { text-align: center; padding: 40px; color: #333; font-size: 11px; letter-spacing: 2px; }
+        footer { text-align: center; padding: 40px; color: #444; font-size: 11px; }
     </style>
 </head>
 <body>
@@ -127,37 +138,40 @@
 
     <div class="category-header">
         <h1>CINEMA PORTAL</h1>
-        <p style="color: #666; letter-spacing: 2px;">PREMIUM STREAMING • NO ADS • 4K HDR</p>
+        <p style="color: #888; letter-spacing: 2px;">SEARCH & DOWNLOAD VIA TELEGRAM BOT</p>
     </div>
 
     <div class="grid">
-        <div class="card">
-            <div class="badge">4K UNLOCKED</div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" class="app-icon">
-            <h3>Netflix Premium</h3>
-            <p style="font-size: 14px; color: #888;">Unlimited Movies & TV Shows. Multi-Screen active.</p>
-            <a href="https://shrinkme.click/NetflixPremiumMod" class="dl-button">START DOWNLOAD</a>
+        <div class="movie-card">
+            <img src="https://images.alphacoders.com/121/1210111.jpg" class="banner" alt="The Batman">
+            <div class="movie-info">
+                <div class="movie-title">The Batman</div>
+                <div class="movie-meta">2022 • Action/Crime • 4K</div>
+                <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
+            </div>
         </div>
 
-        <div class="card">
-            <div class="badge">PREMIUM</div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video_logo.svg" class="app-icon" style="background:white; padding:10px;">
-            <h3>Prime Video</h3>
-            <p style="font-size: 14px; color: #888;">Amazon Originals and exclusive movies unlocked.</p>
-            <a href="#" class="dl-button">START DOWNLOAD</a>
+        <div class="movie-card">
+            <img src="https://images.alphacoders.com/550/550579.jpg" class="banner" alt="Interstellar">
+            <div class="movie-info">
+                <div class="movie-title">Interstellar</div>
+                <div class="movie-meta">2014 • Sci-Fi/Drama • 4K</div>
+                <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
+            </div>
         </div>
 
-        <div class="card">
-            <div class="badge">ALL ACCESS</div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_Hotstar_logo.png" class="app-icon" style="background: #001726; padding: 5px;">
-            <h3>Disney+ Hotstar</h3>
-            <p style="font-size: 14px; color: #888;">Live Sports & Disney+ Originals unlocked.</p>
-            <a href="#" class="dl-button">START DOWNLOAD</a>
+        <div class="movie-card">
+            <img src="https://images.alphacoders.com/128/1287714.jpg" class="banner" alt="Avatar: Way of Water">
+            <div class="movie-info">
+                <div class="movie-title">Avatar: Way of Water</div>
+                <div class="movie-meta">2022 • Sci-Fi/Action • 4K</div>
+                <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
+            </div>
         </div>
     </div>
 
     <footer>
-        XTROTIO MOVIE NETWORK • 2026
+        XTROTIO MOVIE NETWORK • POWERED BY PROSEARCH BOT
     </footer>
 
 </body>
