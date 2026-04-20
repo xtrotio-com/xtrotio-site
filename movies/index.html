@@ -6,67 +6,121 @@
     <title>XTROTIO | Cinema Portal</title>
     <link rel="icon" type="image/png" href="/fevicon.png">
     <style>
-        body { margin: 0; padding: 0; background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; }
-        
-        nav { 
-            background: rgba(0, 0, 0, 0.95); 
-            padding: 18px 0; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            border-bottom: 2px solid #e50914; 
-            display: flex; 
-            justify-content: center; 
-            gap: 30px; 
-        }
-        nav a { color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; }
-
-        .category-header { 
-            text-align: center; 
-            padding: 60px 20px; 
-            background: linear-gradient(180deg, #2b0000 0%, #000 100%); 
-        }
-        .category-header h1 { font-size: clamp(30px, 8vw, 50px); color: #e50914; text-shadow: 0 0 20px #e50914; margin: 0; text-transform: uppercase; }
-
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 30px; 
-            padding: 40px 20px; 
-            max-width: 1200px; 
-            margin: auto; 
+        body { 
+            margin: 0; padding: 0; 
+            background-color: #000; color: white; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            overflow-x: hidden;
         }
 
-        .movie-card { 
-            background: #111; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            border: 1px solid #222; 
-            transition: 0.4s; 
-            display: flex; 
-            flex-direction: column; 
+        nav {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #e50914;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            backdrop-filter: blur(15px);
         }
-        .movie-card:hover { transform: translateY(-10px); border-color: #e50914; box-shadow: 0 10px 30px rgba(229, 9, 20, 0.5); }
-
-        .banner-container { width: 100%; padding-top: 150%; position: relative; background: #1a1a1a; }
-        .banner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-
-        .movie-info { padding: 20px; text-align: center; }
-        .movie-title { font-size: 16px; font-weight: 900; margin-bottom: 15px; text-transform: uppercase; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-
-        .tg-button { 
-            display: block; 
-            background: #e50914; 
-            color: #fff; 
-            text-decoration: none; 
-            padding: 12px; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            font-size: 13px; 
-            text-transform: uppercase; 
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
             transition: 0.3s;
         }
-        .tg-button:hover { background: #ff1e2b; box-shadow: 0 0 15px #e50914; }
+        nav a:hover { color: #e50914; text-shadow: 0 0 10px #e50914; }
+
+        .category-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #2b0000 0%, #000 100%);
+        }
+        .category-header h1 {
+            font-size: clamp(30px, 8vw, 50px);
+            color: #e50914;
+            text-shadow: 0 0 20px #e50914;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .movie-card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s;
+            display: flex; 
+            flex-direction: column;
+        }
+        .movie-card:hover { 
+            transform: translateY(-10px);
+            border-color: #e50914;
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.5);
+        }
+
+        .banner-container {
+            width: 100%;
+            padding-top: 150%; 
+            position: relative;
+            background: #1a1a1a;
+        }
+
+        .banner {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .movie-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .movie-title {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: #fff;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tg-button {
+            display: block;
+            background: #e50914;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .tg-button:hover { 
+            background: #ff1e2b;
+            box-shadow: 0 0 15px #e50914;
+        }
 
         footer { text-align: center; padding: 40px; color: #444; font-size: 11px; }
     </style>
@@ -87,7 +141,7 @@
 
     <div class="grid">
         <div class="movie-card">
-            <div class="banner-container"><img src="posters/m1.jpg" class="banner" alt="3 Body Problem"></div>
+            <div class="banner-container"><img src="posters/m1.jpeg" class="banner" alt="3 Body Problem"></div>
             <div class="movie-info">
                 <div class="movie-title">3 Body Problem</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
@@ -95,7 +149,7 @@
         </div>
 
         <div class="movie-card">
-            <div class="banner-container"><img src="posters/m2.jpg" class="banner" alt="Coyotes"></div>
+            <div class="banner-container"><img src="posters/m2.jpeg" class="banner" alt="Coyotes"></div>
             <div class="movie-info">
                 <div class="movie-title">Coyotes</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
@@ -103,7 +157,7 @@
         </div>
 
         <div class="movie-card">
-            <div class="banner-container"><img src="posters/m3.jpg" class="banner" alt="Michael"></div>
+            <div class="banner-container"><img src="posters/m3.jpeg" class="banner" alt="Michael"></div>
             <div class="movie-info">
                 <div class="movie-title">Michael</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
@@ -111,7 +165,7 @@
         </div>
 
         <div class="movie-card">
-            <div class="banner-container"><img src="posters/m4.jpg" class="banner" alt="Mickey 17"></div>
+            <div class="banner-container"><img src="posters/m4.jpeg" class="banner" alt="Mickey 17"></div>
             <div class="movie-info">
                 <div class="movie-title">Mickey 17</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
@@ -119,7 +173,7 @@
         </div>
 
         <div class="movie-card">
-            <div class="banner-container"><img src="posters/m5.jpg" class="banner" alt="Mortal Kombat II"></div>
+            <div class="banner-container"><img src="posters/m5.jpeg" class="banner" alt="Mortal Kombat II"></div>
             <div class="movie-info">
                 <div class="movie-title">Mortal Kombat II</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
@@ -127,7 +181,7 @@
         </div>
 
         <div class="movie-card">
-            <div class="banner-container"><img src="posters/m6.jpg" class="banner" alt="Mario Galaxy Movie"></div>
+            <div class="banner-container"><img src="posters/m6.jpeg" class="banner" alt="Mario Galaxy Movie"></div>
             <div class="movie-info">
                 <div class="movie-title">Mario Galaxy Movie</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
@@ -135,7 +189,9 @@
         </div>
     </div>
 
-    <footer>XTROTIO MOVIE NETWORK • 2026</footer>
+    <footer>
+        XTROTIO MOVIE NETWORK • 2026
+    </footer>
 
 </body>
 </html>
