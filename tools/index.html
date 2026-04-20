@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XTROTIO | AI Tools</title>
+    <link rel="icon" type="image/png" href="/fevicon.png">
+    <style>
+        /* GLOBAL STYLES */
+        body { 
+            margin: 0; padding: 0; 
+            background-color: #000; color: white; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION BAR */
+        nav {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffcc00; /* Gold for AI */
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            backdrop-filter: blur(15px);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        nav a:hover { color: #ffcc00; text-shadow: 0 0 10px #ffcc00; }
+
+        /* HEADER */
+        .category-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #1a1a00 0%, #000 100%);
+        }
+        .category-header h1 {
+            font-size: clamp(30px, 8vw, 50px);
+            color: #ffcc00;
+            text-shadow: 0 0 20px #ffcc00;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* GRID */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* CARD */
+        .card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card:hover { border-color: #ffcc00; transform: translateY(-10px); }
+
+        .app-icon { 
+            width: 90px; height: 90px; 
+            border-radius: 20px; margin-bottom: 20px; 
+            object-fit: cover; 
+        }
+        
+        .badge {
+            background: #ffcc00;
+            color: #000;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .dl-button {
+            display: block;
+            width: 80%;
+            margin-top: 25px;
+            padding: 15px;
+            border: 2px solid #ffcc00;
+            color: #ffcc00;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 900;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .dl-button:hover { background: #ffcc00; color: #000; box-shadow: 0 0 20px #ffcc00; }
+
+        footer { text-align: center; padding: 40px; color: #333; font-size: 11px; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="https://www.xtrotio.com">HOME</a>
+        <a href="/movies/">MOVIES</a>
+        <a href="/editors/">EDITORS</a>
+        <a href="/tools/">AI TOOLS</a>
+    </nav>
+
+    <div class="category-header">
+        <h1>AI TOOLS</h1>
+        <p style="color: #666; letter-spacing: 2px;">SMART TOOLS • AUTOMATION • GENERATIVE AI</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="badge">PRO UNLOCKED</div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" class="app-icon" style="background:white; padding:10px;">
+            <h3>ChatGPT Pro</h3>
+            <p style="font-size: 14px; color: #888;">GPT-4o Access | No Limits | Fast Response</p>
+            <a href="#" class="dl-button">START DOWNLOAD</a>
+        </div>
+
+        <div class="card">
+            <div class="badge">PREMIUM</div>
+            <img src="https://play-lh.googleusercontent.com/9796Y8Y78f8v9K8q6O_h8t5o8C8R7J-o-8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8" class="app-icon" onerror="this.src='https://via.placeholder.com/90?text=Remini'">
+            <h3>Remini AI</h3>
+            <p style="font-size: 14px; color: #888;">Enhance Photos | AI Headshots | Unlocked</p>
+            <a href="#" class="dl-button">START DOWNLOAD</a>
+        </div>
+    </div>
+
+    <footer>
+        XTROTIO AI HUB • 2026
+    </footer>
+
+</body>
+</html>
