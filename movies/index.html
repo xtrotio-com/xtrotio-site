@@ -6,15 +6,12 @@
     <title>XTROTIO | Cinema Portal</title>
     <link rel="icon" type="image/png" href="/fevicon.png">
     <style>
-        /* GLOBAL STYLES */
         body { 
             margin: 0; padding: 0; 
             background-color: #000; color: white; 
             font-family: 'Segoe UI', Roboto, sans-serif; 
-            overflow-x: hidden;
         }
 
-        /* NAVIGATION BAR */
         nav {
             background: rgba(0, 0, 0, 0.95);
             padding: 18px 0;
@@ -25,7 +22,6 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            backdrop-filter: blur(15px);
         }
         nav a {
             color: #fff;
@@ -34,11 +30,8 @@
             text-transform: uppercase;
             font-size: 13px;
             letter-spacing: 2px;
-            transition: 0.3s;
         }
-        nav a:hover { color: #e50914; text-shadow: 0 0 10px #e50914; }
 
-        /* HEADER */
         .category-header {
             text-align: center;
             padding: 60px 20px;
@@ -49,49 +42,41 @@
             color: #e50914;
             text-shadow: 0 0 20px #e50914;
             margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
         }
 
-        /* MOVIE GRID */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             padding: 40px 20px;
             max-width: 1200px;
             margin: auto;
         }
 
-        /* MOVIE CARD STYLING */
         .movie-card {
             background: #111;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid #222;
             transition: 0.4s;
-            display: flex;
-            flex-direction: column;
         }
         .movie-card:hover { 
-            transform: translateY(-10px);
             border-color: #e50914;
-            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.4);
+            transform: translateY(-5px);
         }
 
-        /* FIXED BANNER BOX (2:3 Ratio) */
         .banner-container {
             width: 100%;
-            padding-top: 150%; 
-            position: relative;
+            height: 400px;
             background: #222;
+            overflow: hidden;
         }
 
         .banner {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            display: block; /* Ensures no weird gaps */
         }
 
         .movie-info {
@@ -103,11 +88,9 @@
             font-size: 18px;
             font-weight: 900;
             margin-bottom: 15px;
-            color: #fff;
             text-transform: uppercase;
         }
 
-        /* BOT BUTTON */
         .tg-button {
             display: block;
             background: #e50914;
@@ -116,13 +99,7 @@
             padding: 12px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 13px;
-            transition: 0.3s;
             text-transform: uppercase;
-        }
-        .tg-button:hover { 
-            background: #ff1e2b;
-            box-shadow: 0 0 15px #e50914;
         }
 
         footer { text-align: center; padding: 40px; color: #444; font-size: 11px; }
@@ -145,40 +122,30 @@
     <div class="grid">
         <div class="movie-card">
             <div class="banner-container">
-                <img src="https://image.tmdb.org/t/p/w500/74xTEgt7R36FpZuB7buR3pC7N7t.jpg" class="banner" alt="The Batman">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=80" class="banner" alt="Movie 1">
             </div>
             <div class="movie-info">
-                <div class="movie-title">The Batman</div>
+                <div class="movie-title">LATEST RELEASES</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
             </div>
         </div>
 
         <div class="movie-card">
             <div class="banner-container">
-                <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6v36G1pC6pQY9.jpg" class="banner" alt="Interstellar">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80" class="banner" alt="Movie 2">
             </div>
             <div class="movie-info">
-                <div class="movie-title">Interstellar</div>
+                <div class="movie-title">POPULAR DRAMA</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
             </div>
         </div>
 
         <div class="movie-card">
             <div class="banner-container">
-                <img src="https://image.tmdb.org/t/p/w500/t6SlsnzhnR36C3s89sZtVJsFq0m.jpg" class="banner" alt="Avatar">
+                <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=500&q=80" class="banner" alt="Movie 3">
             </div>
             <div class="movie-info">
-                <div class="movie-title">Avatar: Way of Water</div>
-                <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
-            </div>
-        </div>
-
-        <div class="movie-card">
-            <div class="banner-container">
-                <img src="https://image.tmdb.org/t/p/w500/8GxvA9zDZUGwhQpS3y8P1YMc979.jpg" class="banner" alt="Oppenheimer">
-            </div>
-            <div class="movie-info">
-                <div class="movie-title">Oppenheimer</div>
+                <div class="movie-title">ACTION HITS</div>
                 <a href="https://t.me/ProSearchM7Bot" class="tg-button">SEARCH IN BOT</a>
             </div>
         </div>
