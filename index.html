@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XTROTIO | Premium Portals</title>
+    <title>XTROTIO | Premium Portal</title>
     <style>
         /* GLOBAL STYLES */
         body { 
@@ -13,7 +13,7 @@
             overflow-x: hidden;
         }
 
-        /* PERMANENT NAVIGATION BAR */
+        /* NAVIGATION BAR */
         nav {
             background: rgba(0, 0, 0, 0.95);
             padding: 18px 0;
@@ -35,10 +35,7 @@
             letter-spacing: 2px;
             transition: 0.3s;
         }
-        nav a:hover { 
-            color: #ff007f; 
-            text-shadow: 0 0 10px #ff007f; 
-        }
+        nav a:hover { color: #ff007f; text-shadow: 0 0 10px #ff007f; }
 
         /* HEADER SECTION */
         .header-container {
@@ -53,19 +50,19 @@
             font-weight: 900;
             letter-spacing: 8px;
             margin: 0;
-            text-shadow: 0 0 15px #ff007f, 0 0 30px #ff007f;
+            text-shadow: 0 0 15px #ff007f;
             animation: pulse 3s infinite ease-in-out;
         }
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.02); opacity: 0.8; }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
 
         /* CONTENT GRID */
         .content-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             padding: 50px 20px;
             max-width: 1200px;
             margin: auto;
@@ -74,66 +71,43 @@
         /* MOD BOX STYLING */
         .mod-box {
             background: #0b0b0b;
-            padding: 40px 30px;
+            padding: 40px 25px;
             border-radius: 20px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
             border: 1px solid #1a1a1a;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s;
         }
-        .mod-box:hover { 
-            transform: translateY(-10px); 
-            border-color: #fff;
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
-        }
+        .mod-box:hover { transform: translateY(-10px); border-color: #fff; }
         
-        .app-logo { 
-            width: 85px; height: 85px; 
-            margin-bottom: 20px; 
-            border-radius: 20px; 
-            object-fit: cover; 
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-        }
+        .app-logo { width: 80px; height: 80px; margin-bottom: 20px; border-radius: 18px; object-fit: cover; }
         
         .download-btn {
             display: block;
             margin-top: 25px;
             padding: 15px;
-            background: transparent;
             border: 2px solid;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 900;
-            font-size: 16px;
-            letter-spacing: 1px;
+            font-size: 15px;
+            text-transform: uppercase;
             transition: 0.3s;
         }
 
         /* THEMES */
         .netflix { border-left: 4px solid #00ff41; }
-        .netflix h3 { color: #00ff41; }
         .netflix .download-btn { border-color: #00ff41; color: #00ff41; }
-        .netflix .download-btn:hover { background: #00ff41; color: #000; box-shadow: 0 0 20px #00ff41; }
+        .netflix .download-btn:hover { background: #00ff41; color: #000; }
 
         .picsart { border-left: 4px solid #8b3dff; }
-        .picsart h3 { color: #8b3dff; }
         .picsart .download-btn { border-color: #8b3dff; color: #8b3dff; }
-        .picsart .download-btn:hover { background: #8b3dff; color: #fff; box-shadow: 0 0 20px #8b3dff; }
+        .picsart .download-btn:hover { background: #8b3dff; color: #fff; }
 
-        .capcut { border-left: 4px solid #00d4ff; }
-        .capcut h3 { color: #00d4ff; }
-        .capcut .download-btn { border-color: #00d4ff; color: #00d4ff; }
-        .capcut .download-btn:hover { background: #00d4ff; color: #000; box-shadow: 0 0 20px #00d4ff; }
+        .editors-redirect { border-left: 4px solid #00d4ff; }
+        .editors-redirect .download-btn { border-color: #00d4ff; color: #00d4ff; }
+        .editors-redirect .download-btn:hover { background: #00d4ff; color: #000; }
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #444;
-            font-size: 12px;
-            letter-spacing: 3px;
-        }
+        footer { text-align: center; padding: 40px; color: #444; font-size: 11px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -147,29 +121,36 @@
 
     <header class="header-container">
         <h1 class="logo-text">XTROTIO</h1>
-        <p style="color: #666; letter-spacing: 4px; font-weight: bold; margin-top: 10px;">PREMIUM APP PORTAL</p>
+        <p style="color: #666; letter-spacing: 4px; font-weight: bold; margin-top: 10px;">PREMIUM PORTAL</p>
     </header>
 
     <div class="content-wrapper">
         <div class="mod-box netflix">
             <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" class="app-logo">
             <h3>Netflix Premium</h3>
-            <p style="color: #888; font-size: 14px;">4K HDR | Multi-Screen | Ad-Free</p>
-            <a href="https://shrinkme.click/NetflixPremiumMod" class="download-btn">DOWNLOAD NOW</a>
+            <p style="color: #888; font-size: 14px;">4K HDR | Multi-Screen</p>
+            <a href="https://shrinkme.click/NetflixPremiumMod" class="download-btn">DOWNLOAD</a>
         </div>
 
         <div class="mod-box picsart">
             <img src="https://picsart.com/apple-touch-icon.png" class="app-logo">
             <h3>Picsart Gold</h3>
-            <p style="color: #888; font-size: 14px;">All AI Tools | Gold Unlocked</p>
-            <a href="https://shrinkme.click/PicsartPremiumMod" class="download-btn">DOWNLOAD NOW</a>
+            <p style="color: #888; font-size: 14px;">All AI Tools Unlocked</p>
+            <a href="https://shrinkme.click/PicsartPremiumMod" class="download-btn">DOWNLOAD</a>
         </div>
 
-        <div class="mod-box capcut">
+        <div class="mod-box editors-redirect">
             <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/CapCut_logo.png" class="app-logo">
             <h3>CapCut Pro</h3>
-            <p style="color: #888; font-size: 14px;">No Watermark | 4K Export</p>
-            <a href="/editors" class="download-btn">VIEW ALL EDITORS</a>
+            <p style="color: #888; font-size: 14px;">Redirecting to Editors...</p>
+            <a href="/editors" class="download-btn">GET DOWNLOAD LINK</a>
+        </div>
+
+        <div class="mod-box editors-redirect">
+            <img src="https://alightmotion.com/wp-content/uploads/2023/11/alight-motion-logo.png" class="app-logo">
+            <h3>Alight Motion</h3>
+            <p style="color: #888; font-size: 14px;">Redirecting to Editors...</p>
+            <a href="/editors" class="download-btn">GET DOWNLOAD LINK</a>
         </div>
     </div>
 
