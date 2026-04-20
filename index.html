@@ -13,7 +13,7 @@
             overflow-x: hidden;
         }
 
-        /* NAVIGATION BAR */
+        /* PERMANENT NAVIGATION BAR */
         nav {
             background: rgba(0, 0, 0, 0.95);
             padding: 18px 0;
@@ -35,7 +35,10 @@
             letter-spacing: 2px;
             transition: 0.3s;
         }
-        nav a:hover { color: #ff007f; text-shadow: 0 0 10px #ff007f; }
+        nav a:hover { 
+            color: #ff007f; 
+            text-shadow: 0 0 10px #ff007f; 
+        }
 
         /* HEADER SECTION */
         .header-container {
@@ -50,19 +53,19 @@
             font-weight: 900;
             letter-spacing: 8px;
             margin: 0;
-            text-shadow: 0 0 15px #ff007f;
+            text-shadow: 0 0 15px #ff007f, 0 0 30px #ff007f;
             animation: pulse 3s infinite ease-in-out;
         }
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.8; }
         }
 
         /* CONTENT GRID */
         .content-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             padding: 50px 20px;
             max-width: 1200px;
             margin: auto;
@@ -71,43 +74,61 @@
         /* MOD BOX STYLING */
         .mod-box {
             background: #0b0b0b;
-            padding: 40px 25px;
+            padding: 40px 30px;
             border-radius: 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
             border: 1px solid #1a1a1a;
-            transition: 0.4s;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .mod-box:hover { transform: translateY(-10px); border-color: #fff; }
+        .mod-box:hover { 
+            transform: translateY(-10px); 
+            border-color: #fff;
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+        }
         
-        .app-logo { width: 80px; height: 80px; margin-bottom: 20px; border-radius: 18px; object-fit: cover; }
+        .app-logo { 
+            width: 85px; height: 85px; 
+            margin-bottom: 20px; 
+            border-radius: 20px; 
+            object-fit: cover; 
+        }
         
         .download-btn {
             display: block;
             margin-top: 25px;
             padding: 15px;
+            background: transparent;
             border: 2px solid;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 900;
-            font-size: 15px;
-            text-transform: uppercase;
+            font-size: 16px;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
         /* THEMES */
-        .movies-theme { border-left: 4px solid #e50914; } /* Red for Movies */
-        .movies-theme .download-btn { border-color: #e50914; color: #e50914; }
-        .movies-theme .download-btn:hover { background: #e50914; color: #fff; }
+        .netflix { border-left: 4px solid #00ff41; }
+        .netflix .download-btn { border-color: #00ff41; color: #00ff41; }
+        .netflix .download-btn:hover { background: #00ff41; color: #000; }
 
-        .editors-theme { border-left: 4px solid #00d4ff; } /* Blue for Editors */
-        .editors-theme .download-btn { border-color: #00d4ff; color: #00d4ff; }
-        .editors-theme .download-btn:hover { background: #00d4ff; color: #000; }
+        .picsart { border-left: 4px solid #8b3dff; }
+        .picsart .download-btn { border-color: #8b3dff; color: #8b3dff; }
+        .picsart .download-btn:hover { background: #8b3dff; color: #fff; }
 
-        .picsart-theme { border-left: 4px solid #8b3dff; } /* Purple for Picsart */
-        .picsart-theme .download-btn { border-color: #8b3dff; color: #8b3dff; }
-        .picsart-theme .download-btn:hover { background: #8b3dff; color: #fff; }
+        .capcut { border-left: 4px solid #00d4ff; }
+        .capcut .download-btn { border-color: #00d4ff; color: #00d4ff; }
+        .capcut .download-btn:hover { background: #00d4ff; color: #000; }
 
-        footer { text-align: center; padding: 40px; color: #444; font-size: 11px; letter-spacing: 2px; }
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #444;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
     </style>
 </head>
 <body>
@@ -125,37 +146,30 @@
     </header>
 
     <div class="content-wrapper">
-        <div class="mod-box movies-theme">
+        <div class="mod-box netflix">
             <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" class="app-logo">
             <h3>Netflix Premium</h3>
-            <p style="color: #888; font-size: 14px;">4K HDR | No Ads</p>
-            <a href="/movies" class="download-btn">GET DOWNLOAD LINK</a>
+            <p style="color: #888; font-size: 14px;">4K HDR | Multi-Screen | Ad-Free</p>
+            <a href="/editors" class="download-btn">GET DOWNLOAD LINK</a>
         </div>
 
-        <div class="mod-box picsart-theme">
+        <div class="mod-box picsart">
             <img src="https://picsart.com/apple-touch-icon.png" class="app-logo">
             <h3>Picsart Gold</h3>
-            <p style="color: #888; font-size: 14px;">All AI Tools Unlocked</p>
+            <p style="color: #888; font-size: 14px;">All AI Tools | Gold Unlocked</p>
             <a href="/editors" class="download-btn">GET DOWNLOAD LINK</a>
         </div>
 
-        <div class="mod-box editors-theme">
+        <div class="mod-box capcut">
             <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/CapCut_logo.png" class="app-logo">
             <h3>CapCut Pro</h3>
-            <p style="color: #888; font-size: 14px;">No Watermark | 4K</p>
+            <p style="color: #888; font-size: 14px;">No Watermark | 4K Export</p>
             <a href="/editors" class="download-btn">GET DOWNLOAD LINK</a>
-        </div>
-
-        <div class="mod-box movies-theme">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video_logo.svg" class="app-logo" style="background:white; padding:5px;">
-            <h3>Prime Video</h3>
-            <p style="color: #888; font-size: 14px;">Ad-Free | Unlocked</p>
-            <a href="/movies" class="download-btn">GET DOWNLOAD LINK</a>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 XTROTIO SYSTEMS • SECURE PORTAL
+        &copy; 2026 XTROTIO SYSTEMS • ENCRYPTED CONNECTION
     </footer>
 
 </body>
