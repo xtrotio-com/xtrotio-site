@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XTROTIO | 18+ Portal</title>
+    <link rel="icon" type="image/png" href="/fevicon.png">
+    <style>
+        /* GLOBAL STYLES */
+        body { 
+            margin: 0; padding: 0; 
+            background-color: #050505; color: white; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            overflow-x: hidden;
+        }
+
+        /* AGE VERIFICATION OVERLAY */
+        #age-gate {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+        #age-gate h2 { color: #d4af37; font-size: 40px; margin-bottom: 10px; }
+        #age-gate p { color: #888; margin-bottom: 30px; max-width: 400px; }
+        .gate-btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .btn-enter { background: #d4af37; color: #000; }
+        .btn-exit { background: #222; color: #fff; }
+        .btn-enter:hover { background: #fff; transform: scale(1.05); }
+
+        /* NAVIGATION */
+        nav {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 18px 0;
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 2px solid #d4af37;
+            display: flex; justify-content: center; gap: 30px;
+        }
+        nav a { color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; }
+
+        /* HEADER */
+        .header {
+            text-align: center; padding: 80px 20px;
+            background: linear-gradient(180deg, #1a1500 0%, #050505 100%);
+        }
+        .header h1 { font-size: 50px; color: #d4af37; margin: 0; text-transform: uppercase; letter-spacing: 5px; }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; padding: 40px 20px;
+            max-width: 1200px; margin: auto;
+        }
+
+        .card {
+            background: #0f0f0f;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #1a1a1a;
+            transition: 0.4s;
+        }
+        .card:hover { border-color: #d4af37; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); }
+
+        .banner-container { width: 100%; padding-top: 140%; position: relative; background: #111; }
+        .banner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); }
+
+        .info { padding: 25px; text-align: center; }
+        .title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #fff; }
+
+        .btn {
+            display: block; width: 100%; background: #d4af37; color: #000;
+            text-decoration: none; padding: 12px; border-radius: 8px;
+            font-weight: bold; font-size: 14px; text-transform: uppercase; transition: 0.3s;
+        }
+        .btn:hover { background: #fff; }
+
+        footer { text-align: center; padding: 60px; color: #333; font-size: 11px; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <div id="age-gate">
+        <h2>ADULT CONTENT</h2>
+        <p>You must be at least 18 years of age to enter this section. Please confirm your age.</p>
+        <div>
+            <button class="gate-btn btn-enter" onclick="verifyAge()">I AM 18+</button>
+            <button class="gate-btn btn-exit" onclick="window.location.href='/'">EXIT</button>
+        </div>
+    </div>
+
+    <nav>
+        <a href="/">HOME</a>
+        <a href="/movies/">MOVIES</a>
+        <a href="/18plus/">ADULT</a>
+        <a href="/tools/">TOOLS</a>
+    </nav>
+
+    <div class="header">
+        <h1>PREMIUM 18+</h1>
+        <p style="color: #666; letter-spacing: 3px;">UNCUT • 4K • PRIVATE ACCESS</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="banner-container"><img src="posters/a1.jpeg" class="banner" alt="Content 1"></div>
+            <div class="info">
+                <div class="title">COLLECTION ONE</div>
+                <button onclick="autoFill('18Plus Collection 1')" class="btn">SEARCH IN BOT</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="banner-container"><img src="posters/a2.jpeg" class="banner" alt="Content 2"></div>
+            <div class="info">
+                <div class="title">COLLECTION TWO</div>
+                <button onclick="autoFill('18Plus Collection 2')" class="btn">SEARCH IN BOT</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>XTROTIO ADULT NETWORK • 2026</footer>
+
+    <script>
+        function verifyAge() {
+            document.getElementById('age-gate').style.display = 'none';
+        }
+
+        function autoFill(contentName) {
+            const botUser = "ProSearchM7Bot";
+            const text = encodeURIComponent(contentName);
+            window.open(`https://t.me/share/url?url=https://t.me/${botUser}&text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>
