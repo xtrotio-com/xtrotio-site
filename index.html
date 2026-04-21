@@ -6,95 +6,122 @@
     <title>XTROTIO | Official</title>
     <link rel="icon" type="image/png" href="fevicon.png">
     <style>
-        /* 1. RESET & BASE */
+        /* BASE STYLES */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { 
-            margin: 0; padding: 0; 
-            background-color: #000; color: #fff; 
-            font-family: -apple-system, system-ui, sans-serif;
-            overflow-x: hidden;
+            margin: 0; padding: 0; background-color: #000; color: #fff; 
+            font-family: -apple-system, system-ui, sans-serif; overflow-x: hidden;
         }
 
-        /* 2. RESPONSIVE HERO SECTION */
-        .hero {
-            height: 100vh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            background: radial-gradient(circle at center, #1a0000 0%, #000 80%);
-            text-align: center;
-            padding-bottom: 80px; /* Space for mobile tab bar */
+        /* LOGO AT TOP */
+        header {
+            width: 100%; padding: 30px 0; text-align: center;
+            background: linear-gradient(to bottom, #0a0a0a, transparent);
+            position: absolute; top: 0; z-index: 10;
         }
-
         .logo {
-            font-size: clamp(60px, 15vw, 100px);
-            font-weight: 900;
-            letter-spacing: -4px;
-            margin: 0;
-            text-transform: lowercase;
+            font-size: 32px; font-weight: 900; letter-spacing: -2px; margin: 0; text-transform: lowercase;
         }
         .logo span { color: #e50914; }
 
-        .tagline {
-            color: #666;
-            font-size: 10px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-top: 15px;
+        /* HERO CENTER AREA */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            background: radial-gradient(circle at center, #1a0000 0%, #000 85%);
+            text-align: center;
         }
+        .tagline { color: #444; font-size: 10px; letter-spacing: 6px; text-transform: uppercase; }
 
-        /* 3. SMART NAVIGATION (Tab Bar on Mobile / Header on Desktop) */
+        /* WATER RIPPLE NAVIGATION */
         nav {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid #222;
-            display: flex; justify-content: space-around;
-            padding: 15px 5px;
-            z-index: 1000;
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-around; z-index: 1000;
         }
 
-        nav a {
-            color: #888;
-            text-decoration: none;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
+        .nav-item {
+            position: relative; overflow: hidden; /* Needed for the ripple */
+            flex: 1; padding: 20px 0; text-align: center;
+            color: #888; text-decoration: none; font-size: 10px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer;
         }
 
-        nav a.active { color: #e50914; }
+        .nav-item.active { color: #e50914; }
         .vip { color: #d4af37 !important; }
 
-        /* 4. DESKTOP ADAPTATION */
+        /* WATER RIPPLE ANIMATION */
+        .ripple {
+            position: absolute; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(0);
+            animation: ripple-effect 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-effect {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* DESKTOP VIEW */
         @media (min-width: 768px) {
-            nav {
-                top: 0; bottom: auto;
-                background: rgba(0,0,0,0.8);
-                border-top: none;
-                border-bottom: 1px solid #111;
-                padding: 25px 0;
-            }
-            nav a { font-size: 12px; letter-spacing: 2px; }
-            .hero { padding-bottom: 0; }
+            nav { top: 0; bottom: auto; border-top: none; border-bottom: 1px solid #111; }
+            header { display: none; } /* Logo moves to nav or stays hidden if nav has it */
+            .logo-nav { display: block !important; margin-right: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero">
+    <header>
         <h1 class="logo">xtrotio<span>.</span></h1>
+    </header>
+
+    <div class="hero">
         <p class="tagline">The Content Network</p>
     </div>
 
-    <nav>
-        <a href="/" class="active">HOME</a>
-        <a href="/movies/">MOVIES</a>
-        <a href="/live/">LIVE</a>
-        <a href="/editors/">EDITORS</a>
-        <a href="/18plus/" class="vip">VIP 18+</a>
+    <nav id="mainNav">
+        <a href="/" class="nav-item active">HOME</a>
+        <a href="/movies/" class="nav-item">MOVIES</a>
+        <a href="/live/" class="nav-item">LIVE</a>
+        <a href="/editors/" class="nav-item">EDITORS</a>
+        <a href="/18plus/" class="nav-item vip">VIP 18+</a>
     </nav>
+
+    <script>
+        // WATER RIPPLE LOGIC
+        document.querySelectorAll('.nav-item').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Remove existing ripples
+                let ripples = this.getElementsByClassName('ripple');
+                while (ripples.length > 0) {
+                    ripples[0].parentNode.removeChild(ripples[0]);
+                }
+
+                // Create new ripple
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+
+                // Position the ripple where the click happened
+                let rect = this.getBoundingClientRect();
+                let size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                
+                let x = e.clientX - rect.left - size / 2;
+                let y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                // Allow a small delay for animation before navigating (optional)
+                // setTimeout(() => { window.location.href = this.href; }, 300);
+            });
+        });
+    </script>
 
 </body>
 </html>
