@@ -125,3 +125,106 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XTROTIO | Mobile Optimized</title>
+    <style>
+        /* 1. MOBILE-FIRST RESET */
+        body { 
+            margin: 0; padding: 0; 
+            background-color: #000; color: white; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Removes blue box on tap */
+        }
+
+        /* 2. RESPONSIVE NAVIGATION (Horizontal Scroll on Mobile) */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 15px 10px;
+            position: sticky; top: 0; z-index: 1000;
+            display: flex;
+            overflow-x: auto; /* Allows swiping the menu on small phones */
+            white-space: nowrap;
+            gap: 20px;
+            border-bottom: 1px solid #333;
+            scrollbar-width: none; /* Hides scrollbar for Firefox */
+        }
+        nav::-webkit-scrollbar { display: none; } /* Hides scrollbar for Chrome/Safari */
+
+        nav a {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            text-decoration: none;
+            color: #888;
+            padding: 8px 5px;
+        }
+        nav a.active { color: #e50914; }
+
+        /* 3. RESPONSIVE GRID (1 Column for Phone, 2 for Tablet, 4 for PC) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Smaller min-width for phone */
+            gap: 15px;
+            padding: 15px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* 4. TACTILE BUTTONS (Easier to tap on touchscreens) */
+        .tg-button, .btn {
+            padding: 14px; /* Larger hit area */
+            font-size: 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
+
+        /* 5. HERO SECTION OPTIMIZATION */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo-main {
+            font-size: 18vw; /* Fluid size based on screen width */
+            margin: 0;
+        }
+
+        /* MEDIA QUERIES FOR LARGER SCREENS */
+        @media (min-width: 768px) {
+            nav { justify-content: center; overflow-x: hidden; }
+            nav a { font-size: 13px; }
+            .grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 40px; }
+            .logo-main { font-size: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="active">HOME</a>
+        <a href="/movies/">MOVIES</a>
+        <a href="/live/">LIVE CHAT</a>
+        <a href="/editors/">EDITORS</a>
+        <a href="/tools/">AI TOOLS</a>
+        <a href="/18plus/" style="color: #d4af37; border: 1px solid #d4af37; border-radius: 4px; padding: 5px 10px;">VIP 18+</a>
+    </nav>
+
+    <div class="hero">
+        <h1 class="logo-main">xtrotio<span>.</span></h1>
+        <p style="letter-spacing: 4px; color: #555; font-size: 10px; text-transform: uppercase;">Mobile Experience 2026</p>
+    </div>
+</body>
+</html>
