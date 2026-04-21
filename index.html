@@ -3,96 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>XTROTIO | Official</title>
+    <title>XTROTIO | Search & Connect</title>
     <link rel="icon" type="image/png" href="fevicon.png">
     <style>
-        /* 1. RESET & BASE */
+        /* 1. CORE STYLES */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { 
             margin: 0; padding: 0; 
             background-color: #000; color: #fff; 
             font-family: -apple-system, system-ui, sans-serif;
-            overflow-x: hidden;
+            overflow: hidden; /* Prevents bounce on mobile */
         }
 
         /* 2. TOP MENU WITH WATER RIPPLE */
         nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: rgba(10, 10, 10, 0.9);
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex; 
-            justify-content: center;
-            z-index: 1000;
+            display: flex; justify-content: center; z-index: 1000;
         }
-
         .nav-item {
-            position: relative; 
-            overflow: hidden; /* Important for water effect */
-            padding: 20px 12px;
-            color: #888;
-            text-decoration: none;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
+            position: relative; overflow: hidden;
+            padding: 18px 12px; color: #888;
+            text-decoration: none; font-size: 10px;
+            font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1.5px; transition: 0.3s;
         }
-
         .nav-item.active { color: #e50914; }
         .vip { color: #d4af37 !important; }
 
-        /* WATER RIPPLE ANIMATION */
         .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(0);
-            animation: water-drop 0.6s linear;
+            position: absolute; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(0); animation: water-drop 0.6s linear;
             pointer-events: none;
         }
+        @keyframes water-drop { to { transform: scale(4); opacity: 0; } }
 
-        @keyframes water-drop {
-            to { transform: scale(4); opacity: 0; }
-        }
-
-        /* 3. HERO SECTION (Logo in Center) */
-        .hero {
+        /* 3. CENTER SEARCH & LOGO LAYOUT */
+        .main-container {
             height: 100vh;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             background: radial-gradient(circle at center, #1a0000 0%, #000 85%);
-            text-align: center;
-            padding-top: 60px; /* Offset for top menu */
+            text-align: center; padding: 20px;
         }
 
         .logo-main {
-            font-size: clamp(60px, 15vw, 100px);
-            font-weight: 900;
-            letter-spacing: -4px;
-            margin: 0;
-            text-transform: lowercase;
-            animation: float 4s ease-in-out infinite;
+            font-size: clamp(50px, 12vw, 90px);
+            font-weight: 900; letter-spacing: -3px;
+            margin: 0 0 30px 0; text-transform: lowercase;
+            color: #fff;
         }
         .logo-main span { color: #e50914; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        /* MATCHING SEARCH BAR */
+        .search-wrapper {
+            width: 100%; max-width: 500px;
+            position: relative;
         }
+        .search-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 50px;
+            color: #fff; font-size: 16px;
+            outline: none; transition: 0.4s;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .search-bar:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #e50914;
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.2);
+            width: 105%; /* Slight expansion effect */
+        }
+        .search-bar::placeholder { color: #555; letter-spacing: 1px; }
 
         .tagline {
-            color: #444;
-            font-size: 10px;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-top: 20px;
+            color: #333; font-size: 10px;
+            letter-spacing: 5px; text-transform: uppercase;
+            margin-top: 30px;
         }
 
-        /* MOBILE ADJUSTMENTS */
+        /* MOBILE FIX FOR SEARCH */
         @media (max-width: 480px) {
-            .nav-item { padding: 20px 8px; font-size: 9px; }
+            .search-bar:focus { width: 100%; }
+            .nav-item { padding: 18px 8px; font-size: 9px; }
         }
     </style>
 </head>
@@ -106,38 +105,43 @@
         <a href="/18plus/" class="nav-item vip">VIP 18+</a>
     </nav>
 
-    <div class="hero">
+    <div class="main-container">
         <h1 class="logo-main">xtrotio<span>.</span></h1>
-        <p class="tagline">Global Content Network</p>
+        
+        <div class="search-wrapper">
+            <form onsubmit="handleSearch(event)">
+                <input type="text" class="search-bar" id="query" placeholder="SEARCH MOVIES, LIVE, OR TOOLS...">
+            </form>
+        </div>
+
+        <p class="tagline">Global Search Interface</p>
     </div>
 
     <script>
         // WATER RIPPLE LOGIC
         document.querySelectorAll('.nav-item').forEach(link => {
             link.addEventListener('click', function(e) {
-                // Prevent immediate navigation so user sees the ripple
-                // (Optional: remove e.preventDefault() if you want instant redirect)
-                
                 let ripple = document.createElement('span');
                 ripple.classList.add('ripple');
                 this.appendChild(ripple);
-
                 let rect = this.getBoundingClientRect();
                 let size = Math.max(rect.width, rect.height);
                 ripple.style.width = ripple.style.height = size + 'px';
-                
                 let x = e.clientX - rect.left - size / 2;
                 let y = e.clientY - rect.top - size / 2;
-                
                 ripple.style.left = x + 'px';
                 ripple.style.top = y + 'px';
-
-                // Cleanup
-                ripple.addEventListener('animationend', () => {
-                    ripple.remove();
-                });
+                ripple.addEventListener('animationend', () => ripple.remove());
             });
         });
+
+        // SEARCH REDIRECT LOGIC
+        function handleSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('query').value;
+            // Redirecting to your movies page with the query to help search
+            window.location.href = `/movies/?search=${encodeURIComponent(query)}`;
+        }
     </script>
 
 </body>
