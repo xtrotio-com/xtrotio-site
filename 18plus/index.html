@@ -16,46 +16,140 @@
     <style>
         /* 1. GLOBAL RESET */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { margin: 0; padding: 0; background-color: #050505; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        body { 
+            margin: 0; padding: 0; 
+            background-color: #050505; color: white; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            overflow-x: hidden; 
+        }
         
-        /* 2. MATCHING NAVIGATION */
+        /* 2. NAVIGATION (Identical to Home/Store/Movies) */
         nav { 
-            background: #000; padding: 25px 10px; position: sticky; top: 0; z-index: 1000; 
-            border-bottom: 2px solid #d4af37; display: flex; justify-content: center; 
+            background: #000; 
+            padding: 25px 10px; 
+            position: sticky; top: 0; z-index: 1000; 
+            border-bottom: 2px solid #d4af37; 
+            display: flex; justify-content: center; 
             gap: clamp(10px, 3.5vw, 35px); 
         }
         nav a { 
-            color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; 
-            font-size: clamp(9px, 2.2vw, 13px); letter-spacing: 1.5px; transition: 0.3s; white-space: nowrap;
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: clamp(9px, 2.2vw, 13px); 
+            letter-spacing: 1.5px; 
+            transition: 0.3s; 
+            white-space: nowrap;
         }
-        nav a:hover { color: #d4af37; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        nav a:hover { 
+            color: #d4af37; 
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); 
+        }
 
         /* 3. PRIVATE HEADER */
-        .header { text-align: center; padding: 100px 20px; background: linear-gradient(180deg, #1a1500 0%, #050505 100%); }
-        .header h1 { font-size: clamp(35px, 8vw, 55px); color: #d4af37; text-shadow: 0 0 20px rgba(212, 175, 55, 0.4); margin: 0; letter-spacing: 5px; text-transform: uppercase; }
-        .header p { color: #666; letter-spacing: 3px; font-size: 11px; margin-top: 15px; }
+        .header { 
+            text-align: center; 
+            padding: 100px 20px; 
+            background: radial-gradient(circle at center, #1a1500 0%, #050505 100%); 
+        }
+        .header h1 { 
+            font-size: clamp(35px, 8vw, 55px); 
+            color: #d4af37; 
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4); 
+            margin: 0; 
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+        }
+        .header p { 
+            color: #666; 
+            letter-spacing: 3px; 
+            font-size: 11px; 
+            margin-top: 15px; 
+            text-transform: uppercase;
+        }
 
         /* 4. GRID & CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 40px 20px; max-width: 1200px; margin: auto; }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+            padding: 40px 20px; 
+            max-width: 1200px; 
+            margin: auto; 
+        }
 
-        .card { background: #0f0f0f; border-radius: 15px; overflow: hidden; border: 1px solid #222; transition: 0.4s; position: relative; display: flex; flex-direction: column; }
-        .card:hover { border-color: #d4af37; transform: translateY(-5px); }
+        .card { 
+            background: #0f0f0f; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid #222; 
+            transition: 0.4s; 
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .card:hover { 
+            border-color: #d4af37; 
+            transform: translateY(-5px); 
+        }
         
-        .locked-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #d4af37; z-index: 2; pointer-events: none; }
+        /* LOCK OVERLAY */
+        .locked-overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.7); 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 40px; color: #d4af37; 
+            z-index: 2; pointer-events: none; 
+        }
 
         .banner-container { width: 100%; padding-top: 140%; position: relative; background: #111; }
-        .banner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(12px) brightness(0.4); }
+        .banner { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; 
+            filter: blur(12px) brightness(0.4); 
+        }
 
-        .info { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #d4af37; letter-spacing: 1px; text-transform: uppercase; }
+        .info { 
+            padding: 25px; 
+            text-align: center; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+        .title { 
+            font-size: 16px; 
+            font-weight: bold; 
+            margin-bottom: 15px; 
+            color: #d4af37; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+        }
 
         .btn { 
-            display: block; width: 100%; background: #d4af37; color: #000; text-decoration: none; padding: 14px; border-radius: 8px; 
-            font-weight: 900; font-size: 12px; text-transform: uppercase; transition: 0.3s; border: none; cursor: pointer; font-family: inherit;
+            display: block; width: 100%; 
+            background: #d4af37; color: #000; 
+            text-decoration: none; padding: 14px; 
+            border-radius: 8px; 
+            font-weight: 900; font-size: 12px; 
+            text-transform: uppercase; 
+            transition: 0.3s; border: none; 
+            cursor: pointer; font-family: inherit;
         }
-        .btn:hover { background: #fff; transform: scale(1.02); box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+        .btn:hover { 
+            background: #fff; 
+            transform: scale(1.02); 
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); 
+        }
 
         footer { text-align: center; padding: 80px; color: #333; font-size: 11px; letter-spacing: 2px; }
+
+        /* MOBILE OVERRIDE */
+        @media (max-width: 480px) {
+            nav { padding: 20px 8px; gap: 10px; }
+            nav a { font-size: 9px; letter-spacing: 0.5px; }
+        }
     </style>
 </head>
 <body>
@@ -71,7 +165,7 @@
 
     <div class="header">
         <h1>PRIVATE ACCESS</h1>
-        <p>UNLOCK PREMIUM CONTENT VIA @XTROTIO_BOT</p>
+        <p>UNLOCK EXCLUSIVE CONTENT VIA @XTROTIO_BOT</p>
     </div>
 
     <div class="grid">
@@ -80,7 +174,7 @@
             <div class="banner-container"><img src="a1.jpg" class="banner"></div>
             <div class="info">
                 <div class="title">PRIVATE COLLECTION 01</div>
-                <button onclick="autoFill('Unlock Private Collection 01')" class="btn">UNLOCK IN BOT</button>
+                <button onclick="autoFill('Unlock Collection 01')" class="btn">UNLOCK IN BOT</button>
             </div>
         </div>
 
@@ -89,7 +183,7 @@
             <div class="banner-container"><img src="a2.jpg" class="banner"></div>
             <div class="info">
                 <div class="title">EXCLUSIVE ACCESS 02</div>
-                <button onclick="autoFill('Unlock Exclusive Access 02')" class="btn">UNLOCK IN BOT</button>
+                <button onclick="autoFill('Exclusive Access 02')" class="btn">UNLOCK IN BOT</button>
             </div>
         </div>
 
@@ -98,7 +192,7 @@
             <div class="banner-container"><img src="a3.jpg" class="banner"></div>
             <div class="info">
                 <div class="title">PREMIUM SELECTION 03</div>
-                <button onclick="autoFill('Unlock Premium Selection 03')" class="btn">UNLOCK IN BOT</button>
+                <button onclick="autoFill('Premium Selection 03')" class="btn">UNLOCK IN BOT</button>
             </div>
         </div>
     </div>
@@ -107,10 +201,14 @@
 
     <script>
         function autoFill(contentName) {
-            const botUrl = "https://t.me/xtrotio_bot";
-            const text = encodeURIComponent(contentName);
-            // Uses the share URL format to ensure text is pasted into the user's message bar
-            window.open(`https://t.me/share/url?url=${botUrl}&text=${text}`, '_blank');
+            // Updated to your specific bot: @xtrotio_bot
+            const botUsername = "xtrotio_bot";
+            
+            // Replaces spaces with underscores for Telegram parameter compatibility
+            const parameter = contentName.replace(/\s+/g, '_');
+            
+            // This format triggers the /start command in the bot with the content ID
+            window.open(`https://t.me/${botUsername}?start=${parameter}`, '_blank');
         }
     </script>
 </body>
