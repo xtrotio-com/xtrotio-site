@@ -1,71 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYTS44KDWM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BYTS44KDWM');
+    </script>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>XTROTIO | Cinema Portal</title>
     <link rel="icon" type="image/png" href="/fevicon.png">
     <style>
-        body { margin: 0; padding: 0; background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
-        
-        /* UPDATED MENU TO INCLUDE 18+ */
-        nav { 
-            background: rgba(0, 0, 0, 0.95); 
-            padding: 18px 0; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            border-bottom: 2px solid #e50914; 
-            display: flex; 
-            justify-content: center; 
-            gap: 25px; 
-            backdrop-filter: blur(15px);
+        /* 1. GLOBAL RESET */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            margin: 0; padding: 0; 
+            background-color: #000; color: white; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            overflow-x: hidden;
         }
-        nav a { 
-            color: #fff; 
-            text-decoration: none; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            font-size: 12px; 
-            letter-spacing: 1px; 
-            transition: 0.3s;
-        }
-        nav a:hover { color: #e50914; }
-        
-        /* GOLD STYLING FOR 18+ LINK */
-        .vip-link { color: #d4af37 !important; }
-        .vip-link:hover { text-shadow: 0 0 10px #d4af37; }
 
-        .category-header { text-align: center; padding: 60px 20px; background: linear-gradient(180deg, #2b0000 0%, #000 100%); }
-        .category-header h1 { font-size: clamp(30px, 8vw, 50px); color: #e50914; text-shadow: 0 0 20px #e50914; margin: 0; text-transform: uppercase; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; padding: 40px 20px; max-width: 1200px; margin: auto; }
-        .movie-card { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.4s; display: flex; flex-direction: column; }
-        .movie-card:hover { transform: translateY(-10px); border-color: #e50914; box-shadow: 0 10px 30px rgba(229, 9, 20, 0.5); }
-        .banner-container { width: 100%; padding-top: 150%; position: relative; background: #1a1a1a; }
-        .banner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-        .movie-info { padding: 20px; text-align: center; }
-        .movie-title { font-size: 18px; font-weight: 900; margin-bottom: 15px; text-transform: uppercase; min-height: 44px; display: flex; align-items: center; justify-content: center; }
-        
-        .tg-button { display: block; width: 100%; background: #e50914; color: #fff; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 13px; text-align: center; text-transform: uppercase; transition: 0.3s; border: none; cursor: pointer; font-family: inherit; }
-        .tg-button:hover { background: #ff1e2b; box-shadow: 0 0 15px #e50914; }
-        
-        footer { text-align: center; padding: 40px; color: #444; font-size: 11px; }
+        /* 2. MATCHING PREMIUM NAVIGATION */
+        nav {
+            position: sticky; top: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 25px 10px; 
+            z-index: 1000;
+            border-bottom: 2px solid #e50914; 
+            display: flex; justify-content: center; 
+            gap: clamp(10px, 4vw, 40px);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: clamp(10px, 2.5vw, 13px); 
+            letter-spacing: 2px;
+            transition: 0.3s;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        nav a:hover { 
+            color: #e50914; 
+            text-shadow: 0 0 10px #e50914; 
+        }
+
+        /* Active Indicator for Movies Page */
+        nav a.active-page::after {
+            content: '';
+            position: absolute; bottom: -8px; left: 0;
+            width: 100%; height: 2px;
+            background: #e50914;
+            box-shadow: 0 0 10px #e50914;
+        }
+
+        .vip { color: #d4af37 !important; }
+        .vip:hover { text-shadow: 0 0 10px #d4af37 !important; }
+
+        /* 3. CONTENT STYLING */
+        .category-header {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #1a0000 0%, #000 100%);
+        }
+        .category-header h1 {
+            font-size: clamp(35px, 8vw, 55px);
+            color: #e50914;
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .movie-card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s;
+            display: flex; flex-direction: column;
+        }
+        .movie-card:hover { 
+            transform: translateY(-10px);
+            border-color: #e50914;
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.5);
+        }
+
+        .banner-container {
+            width: 100%; padding-top: 150%; 
+            position: relative; background: #1a1a1a;
+        }
+        .banner {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .movie-info { padding: 25px; text-align: center; }
+        .movie-title {
+            font-size: 18px; font-weight: 900;
+            margin-bottom: 20px; text-transform: uppercase;
+            min-height: 44px; display: flex; align-items: center; justify-content: center;
+        }
+
+        .tg-button {
+            display: block; width: 100%;
+            background: #e50914; color: #fff;
+            text-decoration: none; padding: 14px;
+            border-radius: 8px; font-weight: bold;
+            font-size: 13px; text-align: center;
+            text-transform: uppercase; transition: 0.3s;
+            border: none; cursor: pointer; font-family: inherit;
+        }
+        .tg-button:hover { 
+            background: #ff1e2b;
+            box-shadow: 0 0 15px #e50914;
+        }
+
+        footer { text-align: center; padding: 60px; color: #444; font-size: 11px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="/">HOME</a>
-        <a href="/movies/">MOVIES</a>
+        <a href="/movies/" class="active-page">MOVIES</a>
+        <a href="/live/">LIVE</a>
         <a href="/editors/">EDITORS</a>
-        <a href="/tools/">AI TOOLS</a>
-        <a href="/18plus/" class="vip-link">VIP 18+</a>
+        <a href="/18plus/" class="vip">VIP 18+</a>
     </nav>
 
     <div class="category-header">
         <h1>CINEMA PORTAL</h1>
-        <p style="color: #888; letter-spacing: 2px;">DIRECT SEARCH IN BOT</p>
+        <p style="color: #666; letter-spacing: 3px; font-size: 11px; margin-top: 10px;">DIRECT SEARCH IN BOT</p>
     </div>
 
     <div class="grid">
@@ -110,7 +192,7 @@
         </div>
 
         <div class="movie-card">
-            <div class="banner-container"><img src="posters/m6.jpeg" class="banner" alt="The Super Mario Galaxy Movie"></div>
+            <div class="banner-container"><img src="posters/m6.jpeg" class="banner" alt="Mario Galaxy Movie"></div>
             <div class="movie-info">
                 <div class="movie-title">Mario Galaxy Movie</div>
                 <button onclick="autoFill('The Super Mario Galaxy Movie')" class="tg-button">SEARCH IN BOT</button>
