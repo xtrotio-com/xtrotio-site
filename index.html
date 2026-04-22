@@ -2,30 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XTROTIO | Official Home</title>
     <link rel="icon" type="image/png" href="fevicon.png">
     <style>
-        /* 1. FIXED GLOBAL STYLES */
-        * { box-sizing: border-box; }
+        /* 1. GLOBAL RESET */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { 
             margin: 0; padding: 0; 
             background-color: #000; color: white; 
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            min-width: 1200px; /* Prevents the page from shrinking/stacking */
+            overflow-x: hidden;
         }
 
-        /* 2. RIGID NAVIGATION (Matches Movies Page exactly) */
+        /* 2. FLEXIBLE NAVIGATION (Fits all screens) */
         nav {
             position: sticky; 
             top: 0; 
             width: 100%;
             background: rgba(0, 0, 0, 0.95);
-            padding: 25px 0; 
+            backdrop-filter: blur(15px);
+            padding: 25px 10px; /* Vertical padding stays large, horizontal is flexible */
             z-index: 1000;
             border-bottom: 2px solid #e50914; 
             display: flex; 
             justify-content: center; 
-            gap: 40px; /* Fixed wide gap */
+            /* This is the fix: it uses a flexible gap that shrinks on mobile */
+            gap: clamp(10px, 4vw, 40px); 
         }
 
         nav a {
@@ -33,10 +36,12 @@
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 14px; 
-            letter-spacing: 2px;
+            /* Font size that stays large but fits */
+            font-size: clamp(10px, 2.5vw, 14px); 
+            letter-spacing: 1px;
             transition: 0.3s;
             position: relative;
+            white-space: nowrap; /* Prevents text from wrapping to 2 lines */
         }
 
         nav a:hover { 
@@ -55,12 +60,12 @@
 
         .vip { color: #d4af37 !important; }
 
-        /* 3. FIXED HERO SECTION */
+        /* 3. HERO SECTION */
         .hero-section {
             text-align: center;
-            padding: 150px 0; 
+            padding: 100px 20px;
             background: radial-gradient(circle at center, #1a0000 0%, #000 100%);
-            height: 800px; /* Fixed height instead of viewport height */
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -68,31 +73,30 @@
         }
 
         .logo-main {
-            font-size: 120px; /* Fixed massive size */
+            font-size: clamp(60px, 15vw, 120px);
             font-weight: 900;
             color: #fff;
             text-transform: lowercase;
-            letter-spacing: -5px;
+            letter-spacing: -4px;
             margin: 0;
         }
 
         .logo-main span { color: #e50914; }
 
         .tagline {
-            color: #666; 
-            letter-spacing: 12px; 
-            font-size: 14px; 
+            color: #555; 
+            letter-spacing: 8px; 
+            font-size: 12px; 
             margin-top: 20px;
             text-transform: uppercase;
         }
 
         footer { 
             text-align: center; 
-            padding: 80px; 
+            padding: 40px; 
             color: #222; 
-            font-size: 12px; 
+            font-size: 11px; 
             letter-spacing: 2px; 
-            background: #000;
         }
     </style>
 </head>
