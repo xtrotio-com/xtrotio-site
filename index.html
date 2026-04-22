@@ -6,124 +6,124 @@
     <title>XTROTIO | Official</title>
     <link rel="icon" type="image/png" href="fevicon.png">
     <style>
-        /* 1. FULL SCREEN RESET */
+        /* 1. GLOBAL RESET */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         html, body { 
-            height: 100%; 
-            width: 100%;
+            height: 100%; width: 100%;
             margin: 0; padding: 0; 
             background-color: #000; color: #fff; 
-            font-family: -apple-system, system-ui, sans-serif;
-            overflow: hidden; /* Keeps the UI tight and app-like */
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden; 
         }
 
-        /* 2. TOP MENU WITH WATER RIPPLE (Consistent sizing) */
+        /* 2. MATCHING PREMIUM NAVIGATION */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex; justify-content: center; z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            /* Increased height and matching border */
+            padding: 25px 0; 
+            z-index: 1000;
+            border-bottom: 2px solid #e50914; 
+            display: flex; justify-content: center; 
+            gap: clamp(15px, 5vw, 40px);
         }
-        .nav-item {
-            position: relative; overflow: hidden;
-            padding: 22px 15px; /* Increased padding for better scale */
-            color: #888;
-            text-decoration: none; font-size: 11px;
-            font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2px; transition: 0.3s;
-        }
-        .nav-item.active { color: #e50914; }
-        .vip { color: #d4af37 !important; }
 
-        /* WATER RIPPLE */
-        .ripple {
-            position: absolute; border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(0); animation: water-drop 0.6s linear;
-            pointer-events: none;
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px; /* Larger text to match movies page */
+            letter-spacing: 2px;
+            transition: 0.3s;
+            position: relative;
         }
-        @keyframes water-drop { to { transform: scale(4); opacity: 0; } }
 
-        /* 3. MASSIVE MAIN CONTAINER */
+        /* Red Glow Hover (Matching Movies/18+ theme) */
+        nav a:hover { 
+            color: #e50914; 
+            text-shadow: 0 0 10px #e50914; 
+        }
+
+        /* Active Page Indicator */
+        nav a.active::after {
+            content: '';
+            position: absolute; bottom: -8px; left: 0;
+            width: 100%; height: 2px;
+            background: #e50914;
+            box-shadow: 0 0 10px #e50914;
+        }
+
+        /* VIP Gold Link */
+        .vip { 
+            color: #d4af37 !important; 
+            transition: 0.3s;
+        }
+        .vip:hover { 
+            text-shadow: 0 0 10px #d4af37 !important; 
+        }
+
+        /* 3. CENTER BRANDING AREA */
         .main-container {
             height: 100vh;
             width: 100vw;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
-            /* Deeper gradient for a sense of depth and size */
-            background: radial-gradient(circle at center, #1a0000 0%, #080808 40%, #000 100%);
+            background: radial-gradient(circle at center, #1a0000 0%, #050505 60%, #000 100%);
             text-align: center;
             padding: 20px;
         }
 
-        /* Upped the logo size to match the scale of content-heavy pages */
         .logo-main {
-            font-size: clamp(80px, 22vw, 160px); /* Massive fluid scale */
+            font-size: clamp(80px, 20vw, 150px);
             font-weight: 900; 
-            letter-spacing: -6px;
+            letter-spacing: -5px;
             margin: 0; 
             text-transform: lowercase;
             color: #fff;
-            filter: drop-shadow(0 0 30px rgba(229, 9, 20, 0.2));
-            animation: float-large 5s ease-in-out infinite;
+            /* Added deep glow shadow to the logo */
+            filter: drop-shadow(0 0 40px rgba(229, 9, 20, 0.4));
+            animation: float 4s ease-in-out infinite;
         }
         .logo-main span { color: #e50914; }
 
-        @keyframes float-large {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.02); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .tagline {
-            color: #555; font-size: 11px;
-            letter-spacing: 8px; text-transform: uppercase;
-            margin-top: 25px;
-            opacity: 0.8;
-            font-weight: 300;
+            color: #666; font-size: 12px;
+            letter-spacing: 10px; text-transform: uppercase;
+            margin-top: 30px;
+            font-weight: 400;
         }
 
-        /* MOBILE FIXES */
+        /* MOBILE OPTIMIZATION */
         @media (max-width: 480px) {
-            .nav-item { padding: 22px 10px; font-size: 9px; letter-spacing: 1px; }
-            .logo-main { letter-spacing: -4px; }
+            nav { padding: 20px 10px; gap: 15px; }
+            nav a { font-size: 10px; letter-spacing: 1px; }
+            .logo-main { letter-spacing: -3px; }
+            .tagline { letter-spacing: 5px; font-size: 10px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="/" class="nav-item active">HOME</a>
-        <a href="/movies/" class="nav-item">MOVIES</a>
-        <a href="/live/" class="nav-item">LIVE</a>
-        <a href="/editors/" class="nav-item">EDITORS</a>
-        <a href="/18plus/" class="nav-item vip">VIP 18+</a>
+        <a href="/" class="active">HOME</a>
+        <a href="/movies/">MOVIES</a>
+        <a href="/live/">LIVE</a>
+        <a href="/editors/">EDITORS</a>
+        <a href="/18plus/" class="vip">VIP 18+</a>
     </nav>
 
     <div class="main-container">
         <h1 class="logo-main">xtrotio<span>.</span></h1>
-        <p class="tagline">Global Content Network</p>
+        <p class="tagline">The Content Network</p>
     </div>
-
-    <script>
-        // WATER RIPPLE LOGIC
-        document.querySelectorAll('.nav-item').forEach(link => {
-            link.addEventListener('click', function(e) {
-                let ripple = document.createElement('span');
-                ripple.classList.add('ripple');
-                this.appendChild(ripple);
-                let rect = this.getBoundingClientRect();
-                let size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                let x = e.clientX - rect.left - size / 2;
-                let y = e.clientY - rect.top - size / 2;
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.addEventListener('animationend', () => ripple.remove());
-            });
-        });
-    </script>
 
 </body>
 </html>
