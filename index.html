@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>XTROTIO | Official</title>
-    <link rel="icon" type="image/png" href="fevicon.png">
+    <title>XTROTIO | Cinema Portal</title>
+    <link rel="icon" type="image/png" href="/fevicon.png">
     <style>
         /* 1. GLOBAL RESET */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        html, body { 
-            height: 100%; width: 100%;
+        body { 
             margin: 0; padding: 0; 
-            background-color: #000; color: #fff; 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden; 
+            background-color: #000; color: white; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            overflow-x: hidden;
         }
 
-        /* 2. MATCHING PREMIUM NAVIGATION */
+        /* 2. MATCHING PREMIUM NAVIGATION (EXACT SAME AS HOME) */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%;
+            position: sticky; 
+            top: 0; 
+            width: 100%;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(15px);
-            /* Increased height and matching border */
-            padding: 25px 0; 
+            padding: 25px 0; /* Matches Home Page */
             z-index: 1000;
-            border-bottom: 2px solid #e50914; 
-            display: flex; justify-content: center; 
+            border-bottom: 2px solid #e50914; /* Matches Home Page */
+            display: flex; 
+            justify-content: center; 
             gap: clamp(15px, 5vw, 40px);
         }
 
@@ -35,20 +35,19 @@
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 13px; /* Larger text to match movies page */
+            font-size: 13px; /* Matches Home Page */
             letter-spacing: 2px;
             transition: 0.3s;
             position: relative;
         }
 
-        /* Red Glow Hover (Matching Movies/18+ theme) */
         nav a:hover { 
             color: #e50914; 
             text-shadow: 0 0 10px #e50914; 
         }
 
-        /* Active Page Indicator */
-        nav a.active::after {
+        /* Active Indicator for Movies Page */
+        nav a.active-page::after {
             content: '';
             position: absolute; bottom: -8px; left: 0;
             width: 100%; height: 2px;
@@ -56,74 +55,175 @@
             box-shadow: 0 0 10px #e50914;
         }
 
-        /* VIP Gold Link */
-        .vip { 
-            color: #d4af37 !important; 
-            transition: 0.3s;
-        }
-        .vip:hover { 
-            text-shadow: 0 0 10px #d4af37 !important; 
-        }
+        .vip { color: #d4af37 !important; }
+        .vip:hover { text-shadow: 0 0 10px #d4af37 !important; }
 
-        /* 3. CENTER BRANDING AREA */
-        .main-container {
-            height: 100vh;
-            width: 100vw;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            background: radial-gradient(circle at center, #1a0000 0%, #050505 60%, #000 100%);
+        /* 3. CONTENT STYLING */
+        .category-header {
             text-align: center;
-            padding: 20px;
+            padding: 80px 20px; /* Upped padding to match the "Large" feel */
+            background: linear-gradient(180deg, #1a0000 0%, #000 100%);
+        }
+        .category-header h1 {
+            font-size: clamp(35px, 8vw, 55px);
+            color: #e50914;
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 4px;
         }
 
-        .logo-main {
-            font-size: clamp(80px, 20vw, 150px);
-            font-weight: 900; 
-            letter-spacing: -5px;
-            margin: 0; 
-            text-transform: lowercase;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .movie-card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s;
+            display: flex; flex-direction: column;
+        }
+        .movie-card:hover { 
+            transform: translateY(-10px);
+            border-color: #e50914;
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.5);
+        }
+
+        .banner-container {
+            width: 100%;
+            padding-top: 150%; 
+            position: relative;
+            background: #1a1a1a;
+        }
+        .banner {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .movie-info { padding: 25px; text-align: center; }
+        .movie-title {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            min-height: 44px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .tg-button {
+            display: block;
+            width: 100%;
+            background: #e50914;
             color: #fff;
-            /* Added deep glow shadow to the logo */
-            filter: drop-shadow(0 0 40px rgba(229, 9, 20, 0.4));
-            animation: float 4s ease-in-out infinite;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
         }
-        .logo-main span { color: #e50914; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        .tg-button:hover { 
+            background: #ff1e2b;
+            box-shadow: 0 0 15px #e50914;
         }
 
-        .tagline {
-            color: #666; font-size: 12px;
-            letter-spacing: 10px; text-transform: uppercase;
-            margin-top: 30px;
-            font-weight: 400;
-        }
+        footer { text-align: center; padding: 60px; color: #444; font-size: 11px; letter-spacing: 2px; }
 
-        /* MOBILE OPTIMIZATION */
+        /* MOBILE FIX */
         @media (max-width: 480px) {
             nav { padding: 20px 10px; gap: 15px; }
             nav a { font-size: 10px; letter-spacing: 1px; }
-            .logo-main { letter-spacing: -3px; }
-            .tagline { letter-spacing: 5px; font-size: 10px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="/" class="active">HOME</a>
-        <a href="/movies/">MOVIES</a>
+        <a href="/">HOME</a>
+        <a href="/movies/" class="active-page">MOVIES</a>
         <a href="/live/">LIVE</a>
         <a href="/editors/">EDITORS</a>
         <a href="/18plus/" class="vip">VIP 18+</a>
     </nav>
 
-    <div class="main-container">
-        <h1 class="logo-main">xtrotio<span>.</span></h1>
-        <p class="tagline">The Content Network</p>
+    <div class="category-header">
+        <h1>CINEMA PORTAL</h1>
+        <p style="color: #666; letter-spacing: 3px; font-size: 11px; margin-top: 10px;">DIRECT SEARCH IN BOT</p>
     </div>
+
+    <div class="grid">
+        <div class="movie-card">
+            <div class="banner-container"><img src="posters/m1.jpeg" class="banner" alt="3 Body Problem"></div>
+            <div class="movie-info">
+                <div class="movie-title">3 Body Problem</div>
+                <button onclick="autoFill('3 Body Problem')" class="tg-button">SEARCH IN BOT</button>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="banner-container"><img src="posters/m2.jpeg" class="banner" alt="Coyotes"></div>
+            <div class="movie-info">
+                <div class="movie-title">Coyotes</div>
+                <button onclick="autoFill('Coyotes')" class="tg-button">SEARCH IN BOT</button>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="banner-container"><img src="posters/m3.jpeg" class="banner" alt="Michael"></div>
+            <div class="movie-info">
+                <div class="movie-title">Michael</div>
+                <button onclick="autoFill('Michael')" class="tg-button">SEARCH IN BOT</button>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="banner-container"><img src="posters/m4.jpeg" class="banner" alt="Mickey 17"></div>
+            <div class="movie-info">
+                <div class="movie-title">Mickey 17</div>
+                <button onclick="autoFill('Mickey 17')" class="tg-button">SEARCH IN BOT</button>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="banner-container"><img src="posters/m5.jpeg" class="banner" alt="Mortal Kombat II"></div>
+            <div class="movie-info">
+                <div class="movie-title">Mortal Kombat II</div>
+                <button onclick="autoFill('Mortal Kombat II')" class="tg-button">SEARCH IN BOT</button>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="banner-container"><img src="posters/m6.jpeg" class="banner" alt="The Super Mario Galaxy Movie"></div>
+            <div class="movie-info">
+                <div class="movie-title">Mario Galaxy Movie</div>
+                <button onclick="autoFill('The Super Mario Galaxy Movie')" class="tg-button">SEARCH IN BOT</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>XTROTIO MOVIE NETWORK • 2026</footer>
+
+    <script>
+        function autoFill(movieName) {
+            const botUser = "ProSearchM7Bot";
+            const text = encodeURIComponent(movieName);
+            window.open(`https://t.me/share/url?url=https://t.me/${botUser}&text=${text}`, '_blank');
+        }
+    </script>
 
 </body>
 </html>
