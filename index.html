@@ -2,32 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>XTROTIO | Official Home</title>
     <link rel="icon" type="image/png" href="fevicon.png">
     <style>
-        /* 1. GLOBAL RESET (Matching Movies Page) */
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        /* 1. FIXED GLOBAL STYLES */
+        * { box-sizing: border-box; }
         body { 
             margin: 0; padding: 0; 
             background-color: #000; color: white; 
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            overflow-x: hidden;
+            min-width: 1200px; /* Prevents the page from shrinking/stacking */
         }
 
-        /* 2. NAVIGATION (Exact match to Movies Page) */
+        /* 2. RIGID NAVIGATION (Matches Movies Page exactly) */
         nav {
             position: sticky; 
             top: 0; 
             width: 100%;
             background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
             padding: 25px 0; 
             z-index: 1000;
             border-bottom: 2px solid #e50914; 
             display: flex; 
             justify-content: center; 
-            gap: clamp(15px, 5vw, 40px);
+            gap: 40px; /* Fixed wide gap */
         }
 
         nav a {
@@ -35,7 +33,7 @@
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 13px; 
+            font-size: 14px; 
             letter-spacing: 2px;
             transition: 0.3s;
             position: relative;
@@ -46,7 +44,7 @@
             text-shadow: 0 0 10px #e50914; 
         }
 
-        /* Active Indicator for Home */
+        /* Active Indicator */
         nav a.active-page::after {
             content: '';
             position: absolute; bottom: -8px; left: 0;
@@ -56,14 +54,13 @@
         }
 
         .vip { color: #d4af37 !important; }
-        .vip:hover { text-shadow: 0 0 10px #d4af37 !important; }
 
-        /* 3. HERO HEADER (Matching Category-Header from Movies) */
+        /* 3. FIXED HERO SECTION */
         .hero-section {
             text-align: center;
-            padding: 120px 20px; /* Increased to give it that "Main Page" weight */
+            padding: 150px 0; 
             background: radial-gradient(circle at center, #1a0000 0%, #000 100%);
-            min-height: 80vh; /* Ensures it fills the screen like the movies grid does */
+            height: 800px; /* Fixed height instead of viewport height */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -71,38 +68,31 @@
         }
 
         .logo-main {
-            font-size: clamp(60px, 15vw, 120px);
+            font-size: 120px; /* Fixed massive size */
             font-weight: 900;
             color: #fff;
             text-transform: lowercase;
-            letter-spacing: -4px;
+            letter-spacing: -5px;
             margin: 0;
-            filter: drop-shadow(0 0 30px rgba(229, 9, 20, 0.3));
         }
 
         .logo-main span { color: #e50914; }
 
         .tagline {
             color: #666; 
-            letter-spacing: 10px; 
-            font-size: 12px; 
+            letter-spacing: 12px; 
+            font-size: 14px; 
             margin-top: 20px;
             text-transform: uppercase;
         }
 
         footer { 
             text-align: center; 
-            padding: 60px; 
+            padding: 80px; 
             color: #222; 
-            font-size: 11px; 
+            font-size: 12px; 
             letter-spacing: 2px; 
-        }
-
-        /* MOBILE FIX */
-        @media (max-width: 480px) {
-            nav { padding: 20px 10px; gap: 15px; }
-            nav a { font-size: 10px; letter-spacing: 1px; }
-            .hero-section { padding: 80px 20px; }
+            background: #000;
         }
     </style>
 </head>
